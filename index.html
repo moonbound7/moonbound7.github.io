@@ -26,7 +26,7 @@
       --lantern-warm: #FFF6E0;
 
       --bg-primary: var(--midnight);
-      --bg-elevated: rgba(20, 22, 36, 0.86);
+      --bg-elevated: rgba(20, 22, 36, 0.88);
       --bg-scene:
         radial-gradient(circle at 50% 12%, rgba(194, 123, 160, 0.25) 0%, rgba(142, 124, 195, 0.18) 30%, transparent 65%),
         radial-gradient(circle at 80% 18%, rgba(145, 201, 238, 0.2) 0%, transparent 45%),
@@ -37,7 +37,7 @@
 
     [data-court="autumn"] {
       --bg-primary: #14090E;
-      --bg-elevated: rgba(42, 16, 29, 0.88);
+      --bg-elevated: rgba(42, 16, 29, 0.9);
       --bg-scene:
         radial-gradient(circle at 50% 12%, rgba(194, 123, 160, 0.28) 0%, transparent 60%),
         linear-gradient(180deg, #2b1024 0%, var(--wine) 55%, var(--burgundy) 100%);
@@ -82,16 +82,16 @@
       100% { transform: translateY(-10vh) translateX(25px); opacity: 0; }
     }
 
-    /* Entrance Silver Gates */
+    /* =====================================================================
+       WHIMSICAL SUNSET GATE LANDING PAGE
+       ===================================================================== */
     #entrance-overlay {
       position: fixed;
       inset: 0;
       z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #141224;
       overflow: hidden;
-      transition: opacity 0.8s ease 0.7s, visibility 0.8s ease 0.7s;
+      transition: opacity 0.95s ease 0.95s, visibility 0.95s ease 0.95s;
     }
 
     #entrance-overlay.gates-open {
@@ -100,85 +100,226 @@
       pointer-events: none;
     }
 
-    .gate-wing {
+    .estate-scene-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .estate-backdrop-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Parting Left & Right Glowing Silver-Iron Gates */
+    .iron-gate-wing {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 50%;
-      background:
-        linear-gradient(180deg, rgba(142, 124, 195, 0.32) 0%, rgba(194, 123, 160, 0.24) 35%, rgba(24, 61, 45, 0.45) 75%, rgba(17, 18, 26, 0.96) 100%),
-        repeating-linear-gradient(90deg, rgba(238, 241, 247, 0.09) 0px, rgba(238, 241, 247, 0.09) 2px, transparent 2px, transparent 42px),
-        #151624;
-      backdrop-filter: blur(10px);
-      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .gate-left { left: 0; border-right: 2px solid var(--silver-bright); }
-    .gate-right { right: 0; border-left: 2px solid var(--silver-bright); }
-    #entrance-overlay.gates-open .gate-left { transform: translateX(-100%); }
-    #entrance-overlay.gates-open .gate-right { transform: translateX(100%); }
-
-    .entrance-card {
-      position: relative;
       z-index: 2;
-      max-width: 540px;
-      margin: 1.25rem;
-      padding: 2.25rem 1.75rem;
+      pointer-events: none;
+      transition: transform 1.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .iron-gate-wing.left { left: 0; }
+    .iron-gate-wing.right { right: 0; }
+
+    #entrance-overlay.gates-open .iron-gate-wing.left {
+      transform: translateX(-100%);
+    }
+
+    #entrance-overlay.gates-open .iron-gate-wing.right {
+      transform: translateX(100%);
+    }
+
+    .iron-gate-wing svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Top Title Crest Floating in the Sunset Sky */
+    .sky-crest {
+      position: absolute;
+      top: 4.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
       text-align: center;
-      background: rgba(17, 18, 26, 0.78);
-      border: 1.5px solid var(--silver-bright);
-      border-radius: 24px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 50px rgba(194, 123, 160, 0.3);
-      transition: opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
+      width: 90%;
+      transition: opacity 0.5s ease;
     }
 
-    #entrance-overlay.gates-open .entrance-card { opacity: 0; transform: scale(0.95); }
+    #entrance-overlay.gates-open .sky-crest { opacity: 0; }
 
-    .lantern-glow {
-      font-size: 0.82rem;
-      letter-spacing: 2px;
+    .sky-crest-sigil {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
       color: var(--lantern-warm);
-      text-shadow: 0 0 12px rgba(255, 246, 224, 0.85);
-      margin-bottom: 0.65rem;
+      text-shadow: 0 0 12px rgba(255, 246, 224, 0.9);
     }
 
-    .entrance-crest {
+    .sky-crest-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 2.15rem;
+      font-size: clamp(1.5rem, 3.6vw, 2.4rem);
       color: var(--pure-white);
-      text-shadow: 0 0 22px var(--sky-blue), 0 0 38px var(--sunset-lavender);
-      letter-spacing: 3px;
+      text-shadow: 0 2px 18px rgba(17, 18, 26, 0.85), 0 0 26px var(--sky-blue);
+      letter-spacing: 2.5px;
+      margin-top: 0.2rem;
     }
 
-    .entrance-desc {
+    .sky-crest-sub {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.18rem;
-      line-height: 1.55;
+      font-size: clamp(0.95rem, 1.8vw, 1.18rem);
       color: var(--moonlight);
-      margin: 0.9rem 0 1.65rem;
+      text-shadow: 0 2px 10px rgba(17, 18, 26, 0.95);
     }
 
-    .enter-manor-btn {
-      padding: 0.95rem 2.3rem;
+    /* =====================================================================
+       LEFT-PILLAR BUZZER BUTTON WITH RUNNING FAIRY-GLOW GLITTER
+       ===================================================================== */
+    .buzzer-mount {
+      position: absolute;
+      left: 28.8%;
+      top: 63.5%;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #entrance-overlay.gates-open .buzzer-mount {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    .buzzer-plate {
+      position: relative;
+      padding: 3px;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow:
+        0 0 22px rgba(145, 201, 238, 0.7),
+        0 0 38px rgba(255, 246, 224, 0.55);
+      animation: fairyPulse 2.6s ease-in-out infinite;
+    }
+
+    /* Running Fairy-Glow Glitter Ring */
+    .buzzer-plate::before {
+      content: "";
+      position: absolute;
+      inset: -120%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        #ffffff 40deg,
+        #91C9EE 85deg,
+        #FFF6E0 130deg,
+        transparent 180deg,
+        #E5EAF4 240deg,
+        #ffffff 290deg,
+        transparent 360deg
+      );
+      animation: fairySpin 2.4s linear infinite;
+    }
+
+    @keyframes fairySpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fairyPulse {
+      0%, 100% {
+        box-shadow: 0 0 18px rgba(145, 201, 238, 0.65), 0 0 32px rgba(255, 246, 224, 0.45);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.95), 0 0 48px rgba(145, 201, 238, 0.85);
+      }
+    }
+
+    .fairy-buzz-btn {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.72rem 1.35rem;
+      border: none;
+      border-radius: 999px;
+      background: rgba(17, 18, 26, 0.62);
+      backdrop-filter: blur(8px);
+      color: var(--pure-white);
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--midnight);
-      background: linear-gradient(135deg, var(--pure-white) 0%, var(--moonlight) 50%, var(--silver) 100%);
-      border: 2px solid var(--pure-white);
-      border-radius: 999px;
+      text-shadow: 0 0 10px #ffffff, 0 0 18px var(--sky-blue);
       cursor: pointer;
-      box-shadow: 0 0 28px rgba(255, 246, 224, 0.45);
-      transition: transform 0.25s ease;
+      white-space: nowrap;
+      transition: background 0.25s ease, transform 0.2s ease;
     }
 
-    .enter-manor-btn:hover { transform: scale(1.05); }
+    .fairy-buzz-btn:hover {
+      background: rgba(84, 40, 168, 0.65);
+      transform: scale(1.04);
+    }
 
-    /* Top Bar + Docked "Keep Playing" Mini-Player */
+    .sparkle-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 8px #ffffff, 0 0 14px var(--sky-blue);
+      pointer-events: none;
+      animation: twinkleSpark 1.8s ease-in-out infinite;
+    }
+    .sparkle-dot.s1 { top: -8px; left: 14%; animation-delay: 0s; }
+    .sparkle-dot.s2 { bottom: -8px; right: 18%; animation-delay: 0.6s; }
+    .sparkle-dot.s3 { top: 50%; right: -10px; animation-delay: 1.1s; }
+    .sparkle-dot.s4 { top: 20%; left: -10px; animation-delay: 1.4s; }
+
+    @keyframes twinkleSpark {
+      0%, 100% { opacity: 0.2; transform: scale(0.7); }
+      50% { opacity: 1; transform: scale(1.35); }
+    }
+
+    .buzzer-hint {
+      margin-top: 0.45rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--lantern-warm);
+      background: rgba(17, 18, 26, 0.72);
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 246, 224, 0.35);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .buzzer-mount {
+        left: 22%;
+        top: 66%;
+      }
+      .fairy-buzz-btn {
+        padding: 0.62rem 1.05rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* =====================================================================
+       TOP BAR & DOCKED PLAYLIST PLAYER
+       ===================================================================== */
     .top-bar {
       position: sticky;
       top: 0;
@@ -208,128 +349,3 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #d9ecff 50%, #91C9EE 90%);
-      box-shadow: 0 0 10px var(--sky-blue);
-      flex-shrink: 0;
-    }
-
-    .docked-player {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(84, 40, 168, 0.28);
-      border: 1px solid var(--sky-blue);
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      color: var(--pure-white);
-    }
-
-    .docked-player.visible { display: flex; }
-
-    .docked-title {
-      max-width: 210px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .silver-pill-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-metallic);
-      color: var(--snow);
-      padding: 0.32rem 0.75rem;
-      border-radius: 999px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .silver-pill-btn:hover { background: var(--silver-bright); color: var(--midnight); }
-
-    /* Main Container */
-    .estate-container {
-      position: relative;
-      z-index: 2;
-      max-width: 1020px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem 5rem;
-    }
-
-    .estate-banner {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      margin-bottom: 1.75rem;
-      background: linear-gradient(135deg, rgba(142, 124, 195, 0.16), rgba(17, 18, 26, 0.86) 50%, rgba(194, 123, 160, 0.14));
-      border: 1.5px solid var(--border-metallic);
-      border-radius: 22px;
-      position: relative;
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
-    }
-
-    .diamond-spark {
-      position: absolute;
-      width: 9px;
-      height: 9px;
-      background: var(--pure-white);
-      transform: rotate(45deg);
-      box-shadow: 0 0 12px var(--sky-blue);
-    }
-    .diamond-spark.tl { top: -5px; left: -5px; }
-    .diamond-spark.tr { top: -5px; right: -5px; }
-    .diamond-spark.bl { bottom: -5px; left: -5px; }
-    .diamond-spark.br { bottom: -5px; right: -5px; }
-
-    .crown-sigil {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      color: var(--sky-blue);
-      margin-bottom: 0.35rem;
-    }
-
-    .manor-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.65rem, 4vw, 2.5rem);
-      background: linear-gradient(180deg, var(--pure-white) 0%, var(--moonlight) 55%, var(--silver) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-    }
-
-    .manor-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--silver);
-      margin-top: 0.45rem;
-    }
-
-    /* Navigation */
-    .room-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.55rem;
-      margin-bottom: 2.25rem;
-    }
-
-    .room-btn {
-      background: var(--bg-elevated);
-      border: 1px solid rgba(198, 203, 213, 0.42);
-      color: var(--moonlight);
-      padding: 0.58rem 1.05rem;
-      border-radius: 999px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .room-btn::after { content: "🐾"; font-size: 0.68rem; margin-left: 0.4rem; opacity: 0.35; }
-    .room-btn:hover, .room-btn.active {
